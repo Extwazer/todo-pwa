@@ -1,38 +1,94 @@
-.App {
-  text-align: center;
+body {
+  font-size: 24px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 0;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.container {
+  max-width: 992px;
+  padding: 0 15px;
+  margin-left: auto;
+  margin-right: auto;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+}
+
+.col-8 {
+  width: 60%;
+  padding: 0 15px;
+}
+
+.col-4 {
+  width: 40%;
+  padding: 0 15px;
+}
+
+.sidebar button {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+input {
+  width: 100%;
+  height: 50px;
+  margin-bottom: 20px;
+  font-size: 24px;
+  border: 1px solid #000000;
+}
+
+.button,
+button {
+  background-color: blue;
+  padding: 10px 15px;
+  font-size: 24px;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.checked {
+  background-color: green;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.delete {
+  background-color: red;
+}
+
+.form-lists {
+  margin: 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+.form-lists li {
+  background-color: antiquewhite;
+  padding: 15px;
+  margin-bottom: 15px;
+}
+
+.form-lists .light-green {
+  background-color: lightgreen;
+}
+
+.elements-btns {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -15px;
+  margin-right: -15px;
+}
+
+.element {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.form-lists li .button {
+  margin: 0 15px;
+}
+
+.margins {
+  margin-top: 50px;
 }
