@@ -12,7 +12,6 @@ class App extends React.Component {
   componentDidUpdate = () => {
     const { elements } = this.state;
     localStorage.setItem("to-do-list", JSON.stringify({ elements }));
-    console.log("1");
   };
 
   addNewElement = (e) => {
@@ -84,6 +83,10 @@ class App extends React.Component {
     return count;
   };
 
+  filterElements = (arg) => {
+    const { elements } = this.state;
+  };
+
   render() {
     const { elements } = this.state;
     return (
@@ -92,6 +95,28 @@ class App extends React.Component {
           <div className="form-element">
             <input type="text" onKeyDown={this.addNewElement}></input>
           </div>
+          {elements.length ? (
+            <div className="filtration">
+              <button
+                onClick={() => this.filterElements("all")}
+                className="button"
+              >
+                Show All
+              </button>
+              <button
+                onClick={() => this.filterElements("completed")}
+                className="button "
+              >
+                Show Completed
+              </button>
+              <button
+                onClick={() => this.filterElements("nCompleted")}
+                className="button "
+              >
+                Show Not Completed
+              </button>
+            </div>
+          ) : null}
           <ul className="form-lists">
             {elements.map(({ id, value, isCheck }) => (
               <li id={id} className={isCheck ? "light-green" : ""}>

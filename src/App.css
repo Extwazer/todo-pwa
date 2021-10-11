@@ -16,15 +16,21 @@ h6 {
   margin-left: auto;
   margin-right: auto;
   display: flex;
+  flex-wrap: wrap;
+}
+
+.col-12 {
+  width: calc(100% - 30px);
+  padding: 0 15px;
 }
 
 .col-8 {
-  width: 60%;
+  width: calc(60% - 30px);
   padding: 0 15px;
 }
 
 .col-4 {
-  width: 40%;
+  width: calc(40% - 30px);
   padding: 0 15px;
 }
 
@@ -91,4 +97,16 @@ button {
 
 .margins {
   margin-top: 50px;
+}
+
+.filtration {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.filtration button {
+  margin-bottom: 20px;
+  margin-left: 15px;
+  margin-right: 15px;
 }
