@@ -6,6 +6,7 @@ class App extends React.Component {
     super(props);
     this.state = JSON.parse(localStorage.getItem("to-do-list")) || {
       elements: [],
+      filter: "all",
     };
   }
 
@@ -83,8 +84,49 @@ class App extends React.Component {
     return count;
   };
 
+  changeFilterElements = (arg) => {
+    if (typeof arg !== "string") return;
+    this.setState({
+      filter: arg,
+    });
+  };
+
   filterElements = (arg) => {
     const { elements } = this.state;
+
+    const newArray = elements.filter((el) => {
+      switch (arg) {
+        case "completed":
+          return el.isCheck === true;
+          break;
+        case "nCompleted":
+          return el.isCheck === false;
+          break;
+        default:
+          return el;
+      }
+    });
+
+    return newArray.map(({ id, value, isCheck }) => (
+      <li id={id} className={isCheck ? "light-green" : ""}>
+        <div className="element">{value}</div>
+        <div className="elements-btns">
+          <button
+            className="button checked"
+            onClick={() => this.checkElement(id)}
+          >
+            {isCheck ? "Checked" : "Not Checked"}
+          </button>
+
+          <button
+            className="button delete"
+            onClick={() => this.deleteElement(id)}
+          >
+            Delete
+          </button>
+        </div>
+      </li>
+    ));
   };
 
   render() {
@@ -98,19 +140,19 @@ class App extends React.Component {
           {elements.length ? (
             <div className="filtration">
               <button
-                onClick={() => this.filterElements("all")}
+                onClick={() => this.changeFilterElements("all")}
                 className="button"
               >
                 Show All
               </button>
               <button
-                onClick={() => this.filterElements("completed")}
+                onClick={() => this.changeFilterElements("completed")}
                 className="button "
               >
                 Show Completed
               </button>
               <button
-                onClick={() => this.filterElements("nCompleted")}
+                onClick={() => this.changeFilterElements("nCompleted")}
                 className="button "
               >
                 Show Not Completed
@@ -118,26 +160,7 @@ class App extends React.Component {
             </div>
           ) : null}
           <ul className="form-lists">
-            {elements.map(({ id, value, isCheck }) => (
-              <li id={id} className={isCheck ? "light-green" : ""}>
-                <div className="element">{value}</div>
-                <div className="elements-btns">
-                  <button
-                    className="button checked"
-                    onClick={() => this.checkElement(id)}
-                  >
-                    {isCheck ? "Checked" : "Not Checked"}
-                  </button>
-
-                  <button
-                    className="button delete"
-                    onClick={() => this.deleteElement(id)}
-                  >
-                    Delete
-                  </button>
-                </div>
-              </li>
-            ))}
+            {this.filterElements(this.state.filter)}
           </ul>
         </div>
         <div className="col-4">
@@ -150,9 +173,7 @@ class App extends React.Component {
               >
                 Check All
               </button>
-            ) : (
-              ""
-            )}
+            ) : null}
             {elements.length ? (
               <button
                 className="button"
@@ -160,9 +181,7 @@ class App extends React.Component {
               >
                 Remove Checked
               </button>
-            ) : (
-              ""
-            )}
+            ) : null}
           </div>
         </div>
       </div>
